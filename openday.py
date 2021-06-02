@@ -7,8 +7,10 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.firefox.options import Options
 from telegram import ParseMode
 from telegram.ext import Updater, CommandHandler
+from time import sleep, time
+from datetime import datetime
 
-TOKEN = insert yours here 
+TOKEN = insert yours here
 CHAT = insert yours here
 websites = {"AUSL Parma": {"url": "https://www.ausl.pr.it/comunicazione_stampa/ultimo_mese/default.aspx", "element": "#paginaindice"},
             "AUSL Modena": {"url": "http://www.ausl.mo.it/archivio-in-primo-piano", "element": ".ElencoSemplice"},
@@ -56,3 +58,6 @@ while True:
                 updater.bot.send_message(
                     chat_id=CHAT, text=text, parse_mode=ParseMode.MARKDOWN)
         prev_html[website["url"]] = actual_html
+    now = datetime.now().strftime("%H:%M:%S")
+    print(f"[{now}] Checked websites, sleeping for 5mins")
+    sleep(300)
