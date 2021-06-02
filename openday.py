@@ -33,8 +33,8 @@ prev_html = {}
 # fill the prev htmls
 for name, website in websites.items():
     driver.get(website["url"])
-    prev_html[website["url"]] = "tette"  # driver.find_element_by_tag_name(
-    #    website["element"]).get_attribute("innerHTML").lower()
+    prev_html[website["url"]] = driver.find_element_by_tag_name(
+        website["element"]).get_attribute("innerHTML").lower()
     print(prev_html)
 
 updater = Updater(token=TOKEN, use_context=True)
